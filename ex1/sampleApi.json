@@ -1,0 +1,512 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Users API",
+    "description": "This is an example API for users using OpenApi Specification.\n---\nUsing this API you can retrieve users , create and delete users.\n",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "name": "Etai Tavor",
+      "url": "https://www.linkedin.com/in/etaitavor/",
+      "email": "mntetai@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "{protocol}://{environment}.example.com/users",
+      "variables": {
+        "environment": {
+          "default": "api",
+          "enum": [
+            "api",
+            "api.dev",
+            "api.staging"
+          ]
+        },
+        "protocol": {
+          "default": "http",
+          "enum": [
+            "http"
+          ]
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/all": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Return all the users",
+        "description": "Return all the users that are in our system.",
+        "responses": {
+          "200": {
+            "description": "An array of users in JSON format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An array of user objects.",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "description": "The user id"
+                      },
+                      "Name": {
+                        "type": "string",
+                        "description": "The user name"
+                      },
+                      "Email": {
+                        "type": "string",
+                        "description": "The users email"
+                      },
+                      "Password": {
+                        "type": "string",
+                        "description": "The user's password"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "description": "Update time stamp"
+                      },
+                      "createAt": {
+                        "type": "string",
+                        "description": "Create time stamp"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "Name",
+                      "Email",
+                      "Password"
+                    ],
+                    "example": {
+                      "id": 1,
+                      "Name": "Test4",
+                      "Email": "test4@ex.com",
+                      "Password": "123456"
+                    }
+                  },
+                  "example": [
+                    {
+                      "id": 1,
+                      "Name": "test4",
+                      "Email": "test4@test.com",
+                      "Password": "123456",
+                      "updatedAt": "2021-05-24T08:36:07.098Z",
+                      "createdAt": "2021-05-24T08:36:07.098Z"
+                    },
+                    {
+                      "id": 2,
+                      "Name": "test5",
+                      "Email": "test5@test.com",
+                      "Password": "123456",
+                      "updatedAt": "2021-05-24T08:38:07.098Z",
+                      "createdAt": "2021-05-24T08:38:07.098Z"
+                    },
+                    {
+                      "id": 3,
+                      "Name": "test6",
+                      "Email": "test6@test.com",
+                      "Password": "123456",
+                      "updatedAt": "2021-05-24T08:39:07.098Z",
+                      "createdAt": "2021-05-24T08:39:07.098Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error returned to user",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "description": "A string sent to user",
+                  "example": "error occured!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Return a user",
+        "description": "Return a user with userId equals to id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The userId requested by user.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A user in JSON format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "The user id"
+                    },
+                    "Name": {
+                      "type": "string",
+                      "description": "The user name"
+                    },
+                    "Email": {
+                      "type": "string",
+                      "description": "The users email"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "The user's password"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "description": "Update time stamp"
+                    },
+                    "createAt": {
+                      "type": "string",
+                      "description": "Create time stamp"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "Name",
+                    "Email",
+                    "Password"
+                  ],
+                  "example": {
+                    "id": 1,
+                    "Name": "Test4",
+                    "Email": "test4@ex.com",
+                    "Password": "123456"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error returned to user",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "description": "A string sent to user",
+                  "example": "error occured!"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Deletes a user",
+        "description": "Deletes the user with id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The user id requested by user.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The resource was deleted successfully."
+          },
+          "500": {
+            "description": "Error returned to user",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "description": "A string sent to user",
+                  "example": "error occured!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a user",
+        "description": "A creation of a user.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "string",
+                    "description": "User name"
+                  },
+                  "Email": {
+                    "type": "string",
+                    "description": "User's email"
+                  },
+                  "Password": {
+                    "type": "string",
+                    "description": "User's password"
+                  }
+                },
+                "required": [
+                  "Name",
+                  "Email",
+                  "Password"
+                ],
+                "example": {
+                  "Name": "Test4",
+                  "Email": "test4@ex.com",
+                  "Password": "123456"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A user in JSON format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "The user id"
+                    },
+                    "Name": {
+                      "type": "string",
+                      "description": "The user name"
+                    },
+                    "Email": {
+                      "type": "string",
+                      "description": "The users email"
+                    },
+                    "Password": {
+                      "type": "string",
+                      "description": "The user's password"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "description": "Update time stamp"
+                    },
+                    "createAt": {
+                      "type": "string",
+                      "description": "Create time stamp"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "Name",
+                    "Email",
+                    "Password"
+                  ],
+                  "example": {
+                    "id": 1,
+                    "Name": "Test4",
+                    "Email": "test4@ex.com",
+                    "Password": "123456"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error returned to user",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "description": "A string sent to user",
+                  "example": "error occured!"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Users": {
+        "description": "An array of user objects.",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "The user id"
+            },
+            "Name": {
+              "type": "string",
+              "description": "The user name"
+            },
+            "Email": {
+              "type": "string",
+              "description": "The users email"
+            },
+            "Password": {
+              "type": "string",
+              "description": "The user's password"
+            },
+            "updatedAt": {
+              "type": "string",
+              "description": "Update time stamp"
+            },
+            "createAt": {
+              "type": "string",
+              "description": "Create time stamp"
+            }
+          },
+          "required": [
+            "id",
+            "Name",
+            "Email",
+            "Password"
+          ],
+          "example": {
+            "id": 1,
+            "Name": "Test4",
+            "Email": "test4@ex.com",
+            "Password": "123456"
+          }
+        },
+        "example": [
+          {
+            "id": 1,
+            "Name": "test4",
+            "Email": "test4@test.com",
+            "Password": "123456",
+            "updatedAt": "2021-05-24T08:36:07.098Z",
+            "createdAt": "2021-05-24T08:36:07.098Z"
+          },
+          {
+            "id": 2,
+            "Name": "test5",
+            "Email": "test5@test.com",
+            "Password": "123456",
+            "updatedAt": "2021-05-24T08:38:07.098Z",
+            "createdAt": "2021-05-24T08:38:07.098Z"
+          },
+          {
+            "id": 3,
+            "Name": "test6",
+            "Email": "test6@test.com",
+            "Password": "123456",
+            "updatedAt": "2021-05-24T08:39:07.098Z",
+            "createdAt": "2021-05-24T08:39:07.098Z"
+          }
+        ]
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The user id"
+          },
+          "Name": {
+            "type": "string",
+            "description": "The user name"
+          },
+          "Email": {
+            "type": "string",
+            "description": "The users email"
+          },
+          "Password": {
+            "type": "string",
+            "description": "The user's password"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Update time stamp"
+          },
+          "createAt": {
+            "type": "string",
+            "description": "Create time stamp"
+          }
+        },
+        "required": [
+          "id",
+          "Name",
+          "Email",
+          "Password"
+        ],
+        "example": {
+          "id": 1,
+          "Name": "Test4",
+          "Email": "test4@ex.com",
+          "Password": "123456"
+        }
+      },
+      "createUser": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "description": "User name"
+          },
+          "Email": {
+            "type": "string",
+            "description": "User's email"
+          },
+          "Password": {
+            "type": "string",
+            "description": "User's password"
+          }
+        },
+        "required": [
+          "Name",
+          "Email",
+          "Password"
+        ],
+        "example": {
+          "Name": "Test4",
+          "Email": "test4@ex.com",
+          "Password": "123456"
+        }
+      },
+      "Error": {
+        "type": "string",
+        "description": "A string sent to user",
+        "example": "error occured!"
+      }
+    }
+  }
+}

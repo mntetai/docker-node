@@ -7,20 +7,20 @@ beforeAll(async () => {
 test('create user', async () => {
     expect.assertions(1);
     const user = await db.Users.create({
-        Id: 1,
-        Name: 'Bobbie',
-        Email: 'Bobbie@ex.com',
+        Name: 'test',
+        Email: 'test@ex.com',
         Password : '123456'
     });
     expect(user.id).toEqual(1);
 });
 
 test('get user', async () => {
-    expect.assertions(3);
+    expect.assertions(4);
     const user = await db.Users.findByPk(1);
-    expect(user.Name).toEqual('Bobbie');
-    expect(user.Email).toEqual('Bobbie@ex.com');
+    expect(user.Name).toEqual('test');
+    expect(user.Email).toEqual('test@ex.com');
     expect(user.Password).toEqual('123456');
+    expect(user.id).toEqual(1);
 });
 
 test('delete user', async () => {

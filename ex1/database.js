@@ -10,7 +10,7 @@ const sequelize = new Sequelize(process.env.DB_SCHEMA || 'postgres',
                                         ssl: process.env.DB_SSL == "true"
                                     }
                                 });
-const Users = sequelize.define('Users', {
+const Users = sequelize.define('Users', {  
     Name: {
         type: Sequelize.STRING,
         allowNull: false

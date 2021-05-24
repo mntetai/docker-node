@@ -8,7 +8,8 @@ router.get("/all", function(req, res) {
             res.status(200).send(JSON.stringify(users));
         })
         .catch( err => {
-            res.status(500).send(JSON.stringify(err));
+            console.log(JSON.stringify(err));
+            res.status(500).send("error occurred!");
         });
 });
 
@@ -18,22 +19,24 @@ router.get("/:id", function(req, res) {
             res.status(200).send(JSON.stringify(user));
         })
         .catch( err => {
-            res.status(500).send(JSON.stringify(err));
+            console.log(JSON.stringify(err));
+            res.status(500).send("error occurred!");
         });
 });
 
 router.put("/", function(req, res) {
+    
     db.Users.create({
         Name: req.body.name,
         Email : req.body.email,
-        Id: req.body.id,
         Password : req.body.password
         })
         .then( user => {
             res.status(200).send(JSON.stringify(user));
         })
         .catch( err => {
-            res.status(500).send(JSON.stringify(err));
+            console.log(JSON.stringify(err));
+            res.status(500).send("error occurred!");
         });
 });
 
@@ -47,7 +50,8 @@ router.delete("/:id", function(req, res) {
             res.status(200).send();
         })
         .catch( err => {
-            res.status(500).send(JSON.stringify(err));
+            console.log(JSON.stringify(err));
+            res.status(500).send("error occurred!");
         });
 });
 
