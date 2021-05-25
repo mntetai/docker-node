@@ -1,7 +1,8 @@
 # docker-node
 An express application to test docker compose.<br>
 Api description is in ex1.json ( open api).<br>
-Application is supported by postgerss docker image.<br>
+Application is supported by PostgreSQL docker image.<br>
+Sending requests via port 3000.<br> 
 
 
 Running the actual application :<br>
