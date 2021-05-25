@@ -1,9 +1,10 @@
 # docker-node
-Sample files for a small node project
+An express application to test docker compose.<br>
+Api description is in ex1.json ( open api).<br>
+Application is supported by postgerss docker image.<br>
 
-Direcory structure should be according to an express application.
 
-Running the actual application :
+Running the actual application :<br>
 <pre>
 cd ..
 docker build -t "dir name" .
