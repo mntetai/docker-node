@@ -9,7 +9,6 @@ Note that migration of schema will be done 30 seconds after PostgreSQL init.<br>
 
 Running the actual application :<br>
 <pre>
-cd ..
 docker build -t ex1 .
 docker-compose up -d
 docker-compose down -v
