@@ -1,2 +1,6 @@
 var db = require('../database.js');
-db.sequelize.sync();
+const myTimeout = setTimeout(migrate, 30000);
+
+function migrate(){
+	db.sequelize.sync();
+}

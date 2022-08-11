@@ -5,6 +5,7 @@ var db = require('../database');
 router.get("/all", function(req, res) {
     db.Users.findAll()
         .then( users => {
+            res.set('Content-Type', 'application/json');
             res.status(200).send(JSON.stringify(users));
         })
         .catch( err => {
@@ -16,6 +17,7 @@ router.get("/all", function(req, res) {
 router.get("/:id", function(req, res) {
     db.Users.findByPk(req.params.id)
         .then( user => {
+            res.set('Content-Type', 'application/json');
             res.status(200).send(JSON.stringify(user));
         })
         .catch( err => {
@@ -32,6 +34,7 @@ router.put("/", function(req, res) {
         Password : req.body.password
         })
         .then( user => {
+            res.set('Content-Type', 'application/json');
             res.status(200).send(JSON.stringify(user));
         })
         .catch( err => {
