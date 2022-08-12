@@ -1,10 +1,8 @@
-FROM node:14.17.0
+FROM node:14.20.0-alpine3.15
 RUN mkdir -p /opt/app
 WORKDIR /opt/app
-RUN adduser app
 COPY ex1/ .
-RUN npm install --production
-#RUN chown -R app /opt/app
-USER app
+RUN npm ci --only=production
+USER node
+COPY --chown=node:node . /opt/app
 EXPOSE 3000
-#CMD [ "npm", "run", "pm2" ]

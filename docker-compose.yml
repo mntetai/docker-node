@@ -21,6 +21,7 @@ services:
       DB_PASSWORD: postgres
       DB_HOST: postgres
       DB_MIGRATION_TIMEOUT: 10000
+      NODE_ENV: production
     depends_on:
       - postgres  
     ports:
