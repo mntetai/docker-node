@@ -20,6 +20,7 @@ services:
       DB_USER: postgres
       DB_PASSWORD: postgres
       DB_HOST: postgres
+      DB_MIGRATION_TIMEOUT: 10000
     depends_on:
       - postgres  
     ports:
